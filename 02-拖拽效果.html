@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            #father {
+              position: absolute;
+              left:50%;
+              top:50%;
+            }
+            #head {
+              width: 100px;
+              height: 30px;
+              background: blue;
+            }
+            #box {
+              width: 100px;
+              height: 200px;
+              background: red;
+            }
+        </style>
+    </head>
+    <body>
+      <div id="father">
+          <div id="head"></div>
+          <div id="box"></div>
+      </div>
+    </body>
+    <script>
+      var father=document.getElementById('father');
+      var head=document.getElementById('head');
+      head.onmousedown=function (e) {
+        var pageX=e.pageX;
+        var pageY=e.pageY;
+        var boxX=father.offsetLeft;
+        var boxY=father.offsetTop;
+        var disX=pageX-boxX;
+        var disY=pageY-boxY;
+        console.log(boxX);
+        document.onmousemove=function(e){
+          father.style.left=e.pageX-disX+'px';
+          father.style.top=e.pageY-disY+'px';
+        }
+      }
+      document.onmouseup=function(){
+        document.onmousemove=null;
+      }
+    </script>
+</html>
